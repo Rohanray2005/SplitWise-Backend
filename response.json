@@ -1,0 +1,29 @@
+{
+  "groupId": "b59f4a4f-635f-430b-ac4b-4a3f63ee4103",
+  "expenses": [
+    {
+      "expenseId": null,
+      "description": "new expense",
+      "userId": "faddb9b9-d5c3-4eb6-b047-e4fdd472f32c",
+      "amount": 1000.0
+    }
+  ],
+  "users": [
+    {
+      "userId": "c4b588b2-aaf2-456c-b78e-6aec0d658370",
+      "userName": "user1",
+      "userEmail": "user1@gmail.com",
+      "netBalance": 0.0
+    },
+    {
+      "userId": "faddb9b9-d5c3-4eb6-b047-e4fdd472f32c",
+      "userName": "user2",
+      "userEmail": "user2@gmail.com",
+      "netBalance": 0.0
+    }
+  ],
+  "groupExpenseMap": {
+    "c4b588b2-aaf2-456c-b78e-6aec0d658370": -500.0,
+    "faddb9b9-d5c3-4eb6-b047-e4fdd472f32c": 500.0
+  }
+}
