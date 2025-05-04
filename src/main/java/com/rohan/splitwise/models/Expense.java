@@ -45,6 +45,9 @@ public class Expense {
         this.amount = amount;
     }
 
+    public Expense() {
+    }
+
     public Expense(String expenseId, String description, String userId, Double amount) {
         this.expenseId = expenseId;
         this.description = description;

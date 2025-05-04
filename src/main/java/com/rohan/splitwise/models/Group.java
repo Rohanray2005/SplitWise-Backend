@@ -43,6 +43,7 @@ public class Group {
         groupId = UUID.randomUUID().toString();
         this.users = new HashSet<>();
         this.expenses = new ArrayList<>();
+        this.groupExpenseMap = new HashMap<>();
     }
 
     public void addUser(User user) {

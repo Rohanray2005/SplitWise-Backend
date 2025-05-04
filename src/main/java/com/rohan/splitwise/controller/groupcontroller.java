@@ -1,6 +1,7 @@
 package com.rohan.splitwise.controller;
 
 import com.rohan.splitwise.models.Expense;
+import com.rohan.splitwise.models.ExpenseMapping;
 import com.rohan.splitwise.models.Group;
 import com.rohan.splitwise.models.User;
 import com.rohan.splitwise.service.GroupService;
@@ -35,6 +36,11 @@ public class groupcontroller {
     @PostMapping("/add-expense-to-group/{groupId}")
     public Group addExpenseToGroup(@PathVariable String groupId, @RequestBody Expense expense) {
         return groupService.addExpense(groupId, expense);
+    }
+
+    @GetMapping("/get-expense-details/{groupId}")
+    public ExpenseMapping getExpenseDetails(@PathVariable String groupId) {
+        return groupService.getExpenseMap(groupId);
     }
 
 }

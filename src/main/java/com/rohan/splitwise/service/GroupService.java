@@ -1,14 +1,9 @@
 package com.rohan.splitwise.service;
 
-import com.rohan.splitwise.models.Expense;
-import com.rohan.splitwise.models.Group;
-import com.rohan.splitwise.models.User;
+import com.rohan.splitwise.models.*;
 import org.springframework.stereotype.Component;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 @Component
 public class GroupService {
@@ -19,19 +14,21 @@ public class GroupService {
 
     private ExpenseService expenseService;
 
-    private Map<String, Double> expenseMap;
-
     public GroupService(UserService userService, ExpenseService expenseService) {
         this.userService = userService;
         this.expenseService = expenseService;
         groupMap = new HashMap<>();
-        expenseMap = new HashMap<>();
     }
 
     public Group createGroup() {
         Group newGroup = new Group();
         groupMap.put(newGroup.getGroupId(), newGroup);
         return newGroup;
+    }
+
+    public Group createGroup(Group group) {
+        groupMap.put(group.getGroupId(), group);
+        return groupMap.get(group.getGroupId());
     }
 
     public Group addUser(String groupId, String userId) {
@@ -47,14 +44,18 @@ public class GroupService {
         expense.setExpenseId(UUID.randomUUID().toString());
         group.addExpense(expense);
         List<String> userIds = group.getUsers().stream().map(User::getUserId).toList();
-        expenseService.findExpenseSplit(expense, userIds, expenseMap);
-        group.setGroupExpenseMap(expenseMap);
+        expenseService.findExpenseSplit(expense, userIds, group.getGroupExpenseMap());
         groupMap.put(groupId, group);
         return group;
     }
 
     public Group getGroupDetails(String groupId) {
         return groupMap.get(groupId);
+    }
+
+    public ExpenseMapping getExpenseMap(String groupId) {
+        Group group = groupMap.get(groupId);
+        return expenseService.getExpenseMappingOutOfGroupExpenseMap(group.getGroupExpenseMap());
     }
 
 }
