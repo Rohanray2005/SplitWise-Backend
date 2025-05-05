@@ -3,6 +3,7 @@ package com.rohan.splitwise.service;
 import com.rohan.splitwise.models.*;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.util.*;
 
 @Component
@@ -42,6 +43,8 @@ public class GroupService {
     public Group addExpense(String groupId, Expense expense){
         Group group = groupMap.get(groupId);
         expense.setExpenseId(UUID.randomUUID().toString());
+        expense.setExpenseStatus(ExpenseStatus.CREATED);
+        expense.setExpenseDate(LocalDate.now().toString());
         group.addExpense(expense);
         List<String> userIds = group.getUsers().stream().map(User::getUserId).toList();
         expenseService.findExpenseSplit(expense, userIds, group.getGroupExpenseMap());

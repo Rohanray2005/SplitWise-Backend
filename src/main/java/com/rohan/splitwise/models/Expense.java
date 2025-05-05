@@ -2,6 +2,8 @@ package com.rohan.splitwise.models;
 
 import lombok.Data;
 
+import java.util.Date;
+
 @Data
 public class Expense {
 
@@ -12,6 +14,26 @@ public class Expense {
     private String userId;
 
     private Double amount;
+
+    private ExpenseStatus expenseStatus;
+
+    private String expenseDate;
+
+    public ExpenseStatus getExpenseStatus() {
+        return expenseStatus;
+    }
+
+    public void setExpenseStatus(ExpenseStatus expenseStatus) {
+        this.expenseStatus = expenseStatus;
+    }
+
+    public String getExpenseDate() {
+        return expenseDate;
+    }
+
+    public void setExpenseDate(String expenseDate) {
+        this.expenseDate = expenseDate;
+    }
 
     public String getExpenseId() {
         return expenseId;
@@ -46,12 +68,5 @@ public class Expense {
     }
 
     public Expense() {
-    }
-
-    public Expense(String expenseId, String description, String userId, Double amount) {
-        this.expenseId = expenseId;
-        this.description = description;
-        this.userId = userId;
-        this.amount = amount;
     }
 }

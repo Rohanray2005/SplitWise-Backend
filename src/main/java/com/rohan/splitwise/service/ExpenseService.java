@@ -48,6 +48,7 @@ public class ExpenseService {
         );
 
         // todo: handle case of amounts being equal and cancel them first
+        // todo: optimize code
 
         Pair obj1 = maxHeap.poll();
         Pair obj2 = minHeap.poll();
